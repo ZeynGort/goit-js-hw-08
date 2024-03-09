@@ -5,17 +5,24 @@ const feedbackFormState = {
   email: form.elements.email.value,
   message: form.elements.message.value,
 };
-const emailParseJSON = JSON.parse(localStorage.getItem(STORAGE_KEY)).email;
-const messageParseJSON = JSON.parse(localStorage.getItem(STORAGE_KEY)).message;
 window.addEventListener('load', () => {
   console.log(feedbackFormState.email);
-  if (emailParseJSON === '' && messageParseJSON === '') {
+  if (
+    JSON.parse(localStorage.getItem(STORAGE_KEY)).email === '' &&
+    JSON.parse(localStorage.getItem(STORAGE_KEY)).message === ''
+  ) {
     return;
   }
-  form.elements.email.value = emailParseJSON;
-  feedbackFormState.email = emailParseJSON;
-  form.elements.message.value = messageParseJSON;
-  feedbackFormState.message = messageParseJSON;
+  form.elements.email.value = JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  ).email;
+  feedbackFormState.email = JSON.parse(localStorage.getItem(STORAGE_KEY)).email;
+  form.elements.message.value = JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  ).message;
+  feedbackFormState.message = JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+  ).message;
 });
 form.addEventListener(
   'input',
